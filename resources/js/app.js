@@ -7,6 +7,32 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import { Form, HasError, AlertError } from 'vform';
+
+window.Form = Form;
+Vue.component(HasError.name, HasError);
+Vue.component(AlertError.name, AlertError);
+
+import VueRouter from 'vue-router';
+import Dashboard from './components/Dashboard.vue';
+import Profile from './components/Profile.vue';
+import Ledger_user from './components/Ledger_user.vue';
+
+
+Vue.use(VueRouter);
+
+const routes = [
+  { path: '/dashboard', component: Dashboard } ,
+  { path: '/profile', component: Profile } , 
+  { path: '/ledger_user', component: Ledger_user }
+
+ 
+];
+
+const router = new VueRouter({
+  mode: 'history',
+  routes // short for `routes: routes`
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,6 +47,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29,4 +56,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router
 });
