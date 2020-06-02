@@ -17,6 +17,7 @@ import VueRouter from 'vue-router';
 import Dashboard from './components/Dashboard.vue';
 import Profile from './components/Profile.vue';
 import Ledger_user from './components/Ledger_user.vue';
+import Ledger_admin from './components/Ledger_admin.vue';
 
 
 Vue.use(VueRouter);
@@ -24,7 +25,8 @@ Vue.use(VueRouter);
 const routes = [
   { path: '/dashboard', component: Dashboard } ,
   { path: '/profile', component: Profile } , 
-  { path: '/ledger_user', component: Ledger_user }
+  { path: '/ledger_user', component: Ledger_user } ,
+  { path: '/ledger_admin', component: Ledger_admin }
 
  
 ];

@@ -27,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    {{-- <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </button>
         </div>
       </div>
-    </form>
+    </form> --}}
 
     <!-- Right navbar links (deleted) --> 
   </nav>
@@ -82,10 +82,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             {{-- if user --}}
-            <router-link to="/ledger_user" class="nav-link">
+             <router-link to="/ledger_user" class="nav-link">
+
               <i class="nav-icon fas fa-folder yellow"></i>
               <p>
                 Ledger
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            {{-- if user --}}
+             <router-link to="/ledger_admin" class="nav-link">
+
+              <i class="nav-icon fas fa-folder yellow"></i>
+              <p>
+                Ledger (Admin)
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
@@ -126,10 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
-    </div>
+    
     <!-- Default to the left -->
     <strong>Copyright &copy; 2020.</strong> All rights reserved.
   </footer>
