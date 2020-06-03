@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>SBGFC | Performance Ledger</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet"  href="/css/app.css">
 </head> 
@@ -46,10 +46,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="./img/Ledger.png" alt="Performance Ledger Logo" class="brand-image img-circle elevation-3 green"
-           style="opacity: .8">
-      {{-- <i class="nav-icon fas fa-address-book green" style="padding: 8px"></i> --}}
-      <span class="brand-text font-weight-light">Performance Ledger</span>
+      {{-- <img src="./img/Ledger.png" alt="Performance Ledger Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8"> --}}
+      <i class="nav-icon fas fa-book-open" style="padding: 8px"></i>
+      <span class="brand-text font-weight-light small">Performance Ledger</span>
     </a>
 
     <!-- Sidebar -->
@@ -57,7 +57,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="./img/user.png" class="img-circle elevation-2" alt="User Image">
+          {{-- <img src="./img/user.png" class="img-circle elevation-2" alt="User Image"> --}}
+          <i class="nav-icon fas fa-user white" style="padding: 6px"></i>
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -72,7 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <router-link to="/dashboard" class="nav-link">
-              <i class="nav-icon fas fa-th blue"></i>
+              <i class="nav-icon fas fa-th purple"></i>
               <p>
                 Dashboard
                 <!-- <span class="right badge badge-danger">New</span> -->
@@ -86,7 +87,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <i class="nav-icon fas fa-folder yellow"></i>
               <p>
-                Ledger
+                Task Scheduler
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
@@ -98,7 +99,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <i class="nav-icon fas fa-folder yellow"></i>
               <p>
-                Ledger (Admin)
+                Task Scheduler (Admin)
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>

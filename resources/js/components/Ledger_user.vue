@@ -1,9 +1,10 @@
+
 <template>
     <div class="container">
         <div class="row justify-content-center mt-4">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">(Date)</div>
+                    <div class="card-header">June 03, 2020</div>
 
                     <form @submit.prevent="Submit_Timeout">
 
@@ -15,35 +16,46 @@
                                     <input v-model="form.employee" type="text" name="employee" class="form-control" :class="{ 'is-invalid': form.errors.has('employee') }" id="employee" readonly>
                                     <has-error :form="form" field="employee"></has-error> -->
                                     <label for="employee">Name</label>
-                                    <input type="text" name="employee" class="form-control" value="" id="employee" readonly>
+                                    <input type="text" name="employee" class="form-control" value="Dianne Manuel" id="employee" readonly></i>
                                 </div>
                                 <div class="col-3">
                                     <label for="employeeid">ID</label>
-                                    <input type="text" name="employeeid" class="form-control" id="employeeid" readonly>
+                                    <input type="text" name="employeeid" class="form-control" value="1" id="employeeid" readonly>
                                 </div>
 
                             </div>
 
                             <div class="form-group row">
+
                                 <div class="col-3">
                                     <label for="mow">Mode of Work</label>
-                                    <input type="text" name="mow" class="form-control" id="mow" readonly>
+                                    <select v-model="form.mow" name="mow" class="form-control mt-2" :class="{ 'is-invalid': form.errors.has('mow') }" id="mow" required>
+                                        <option value="" selected>Work-from-Home</option>
+                                        <option value="Field">Field</option>
+                                        <option value="Office">Office</option>
+                                    </select>
+                                    <has-error :form="form" field="mow"></has-error>
+                                </div>
+
+                                <div class="col-3">
+                                    <a href="#" class="form-control btn btn-info">
+                                      <b>TIME-IN</b>
+                                    </a>
+                                    <input type="time" name="timeout" max="23:00" class="form-control mt-1" id="timeout" readonly>
                                 </div>
                                 <div class="col-3">
-                                    <label for="timein">TIME-IN</label>
-                                    <input type="time" name="timein" class="form-control" id="timein" readonly>
-                                </div>
-                                <div class="col-3">
-                                    <label for="timeout">TIME-OUT</label>
-                                    <input type="time" name="timeout" class="form-control" id="timeout" readonly>
+                                    <a href="#" class="form-control btn btn-info" style="pointer-events: none;">
+                                      <b>TIME-OUT</b>
+                                    </a>
+                                    <input type="time" name="timeout" max="23:00" class="form-control mt-1" id="timeout" readonly>
                                 </div>
                                 <div class="col-3">
                                     <label for="nohours">NO. OF HOURS</label>
-                                    <input type="number" step="any" name="nohours" class="form-control" id="nohours" readonly>
+                                    <input type="number" step="any" name="nohours" class="form-control mt-2" id="nohours" readonly>
                                 </div>
                             </div>
 
-                            <br><br>
+                            <br><hr>
 
                             <div class="form-group">
                                 <label for="dailytask">DAILY TASK</label>
@@ -79,6 +91,7 @@
                 form: new Form({
 
                     output : '',
+                    mow: ''
 
                 })
             }
@@ -97,6 +110,3 @@
     };
    
 </script>
-
-
- 

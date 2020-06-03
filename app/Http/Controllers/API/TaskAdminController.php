@@ -4,8 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\TaskAdmin;
 
-class UserController extends Controller
+class TaskAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -25,6 +26,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->all();
     }
 
     /**

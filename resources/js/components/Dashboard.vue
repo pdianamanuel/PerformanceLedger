@@ -1,3 +1,4 @@
+
 <template>
     <div class="container">
         <div class="row justify-content-center">
@@ -19,5 +20,5 @@
         mounted() {
             console.log('Component mounted.')
         }
-    }
+    };
 </script>
