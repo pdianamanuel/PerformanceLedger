@@ -12,15 +12,31 @@ import { Form, HasError, AlertError } from 'vform';
 window.Form = Form;
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
+Vue.component('b-form-datepicker', BFormDatepicker)
 
 import VueRouter from 'vue-router';
 import Dashboard from './components/Dashboard.vue';
 import Profile from './components/Profile.vue';
 import Ledger_user from './components/Ledger_user.vue';
 import Ledger_admin from './components/Ledger_admin.vue';
-
+import { BFormDatepicker } from 'bootstrap-vue';
+import moment from 'moment'
+  
+Vue.config.productionTip = false
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('MMMM DD, yyyy')
+  }
+});
 
 Vue.use(VueRouter);
+
+import Swal from 'sweetalert2';
+
+// CommonJS
+window.Swal = require('sweetalert2');
+
+// window.toast = toast;
 
 const routes = [
   { path: '/dashboard', component: Dashboard } ,

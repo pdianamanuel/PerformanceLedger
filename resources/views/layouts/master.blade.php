@@ -20,10 +20,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav text-sm">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
+      <div class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">FIELD NOTES - ATTENDANCE & WORK PERFORMANCE LEDGER</a>
+      </div><!-- /.col -->
+    </ul>
+
+    <ul class="navbar-nav ml-auto ">
+      <!-- Messages Dropdown Menu -->
+      
+      <!-- Notifications Dropdown Menu -->
+      
+      <div class="nav-icon">
+        <img src="./img/sb_logo.jpg" alt="Performance Ledger Logo" class="brand-image nav-link">
+      </div>
     </ul>
 
     <!-- SEARCH FORM -->
@@ -49,7 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       {{-- <img src="./img/Ledger.png" alt="Performance Ledger Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8"> --}}
       <i class="nav-icon fas fa-book-open" style="padding: 8px"></i>
-      <span class="brand-text font-weight-light small">Performance Ledger</span>
+      <span class="brand-text font-weight-light">FIELD NOTES</span>
     </a>
 
     <!-- Sidebar -->
@@ -81,6 +94,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
+          @if ( Auth::user()->isAdmin == 0 )
+
           <li class="nav-item">
             {{-- if user --}}
              <router-link to="/ledger_user" class="nav-link">
@@ -93,17 +108,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
+          @endif
+
+          @if ( Auth::user()->isAdmin == 1 )
+
           <li class="nav-item">
             {{-- if user --}}
              <router-link to="/ledger_admin" class="nav-link">
 
               <i class="nav-icon fas fa-folder yellow"></i>
               <p>
-                Task Scheduler (Admin)
+                Task Scheduler
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
+
+          @endif
 
           <li class="nav-item">
 
@@ -127,7 +148,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
 
+  <!-- Content Wrapper. Contains page content -->
+  
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">

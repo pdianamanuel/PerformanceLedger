@@ -25,7 +25,11 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
+        "@syncfusion/ej2-vue-dropdowns": "^18.1.55",
         "admin-lte": "^3.0.5",
+        "bootstrap-vue": "^2.15.0",
+        "moment": "^2.26.0",
+        "sweetalert2": "^9.14.0",
         "vform": "^1.0.1",
         "vue-router": "^3.3.2",
         "vuejs-datepicker": "^1.6.2"
