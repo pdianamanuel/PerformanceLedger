@@ -2,7 +2,7 @@
 <template>
     <div class="container">
 
-        <div class="content-header">
+        <div class="content-header" v-if="$gate.isEmployee()">
           <div class="container-fluid">
             <div class="row mb-s">
               <div class="col-sm-6">
@@ -18,8 +18,8 @@
           </div><!-- /.container-fluid -->
         </div>
 
-        <div class="row justify-content-center mt-4">
-
+        <div class="row justify-content-center mt-4" v-if="$gate.isEmployee()">
+ 
             <div class="col-md-12">
 
                 <div class="modal-content">

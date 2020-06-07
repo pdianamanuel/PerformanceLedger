@@ -94,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
-          @if ( Auth::user()->isAdmin == 0 )
+          @can('isEmployee')
 
           <li class="nav-item">
             {{-- if user --}}
@@ -108,9 +108,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
-          @endif
+          @endcan
 
-          @if ( Auth::user()->isAdmin == 1 )
+          @can('isAdmin')
 
           <li class="nav-item">
             {{-- if user --}}
@@ -124,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
-          @endif
+          @endcan
 
           <li class="nav-item">
 
@@ -171,6 +171,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </footer>
 </div>
 <!-- ./wrapper -->
+
+
+@auth
+<script>
+  window.user = @json(auth()->user())
+</script>
+@endauth
 
 <script src="/js/app.js"></script>
 </body>

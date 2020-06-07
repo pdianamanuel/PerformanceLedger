@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Taskscheduler_admin;
 use App\ref_modeofwork;
+use App\ref_admin_employee;
+use App\User;
 use DB;
+// use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 
 class TaskAdminController extends Controller
 {
@@ -21,7 +25,22 @@ class TaskAdminController extends Controller
         // $modeofwork->ModeOfWork = "Work-from-home";
         // $modeofwork->save();
         // return "success";
-        return ref_modeofwork::all();
+        // $activeUser = User::where('isAdmin', 1)->get();
+        $modeofworks = ref_modeofwork::all();
+        // $employees = User::join('ref_admin_employees', 'users.id', '=', 'ref_admin_employees.Admin_id')
+        //             ->->select('users.*')
+        // $id = \Auth::user()->id;
+        // dd($id->id);
+        $employees = DB::table('users')
+                    ->join('ref_admin_employees', 'users.id', '=', 'ref_admin_employees.Employee_id')
+                    // ->where('isActive', 1)
+                    ->where('Admin_id', 1)
+                    // ->where('isAdmin', 0)
+                    // ->orderBy('name') 
+                    ->get();
+        // 
+        // return response()->json([]);
+        return response()->json(["employees"=>$employees, "modeofworks"=>$modeofworks]);
 
     }
 

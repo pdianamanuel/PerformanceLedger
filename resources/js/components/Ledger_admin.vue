@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <div class="content-header">
+        <div class="content-header" v-if="$gate.isAdmin()">
           <div class="container-fluid">
             <div class="row mb-s">
               <div class="col-sm-6">
@@ -18,7 +18,7 @@
           </div><!-- /.container-fluid -->
         </div>
 
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-4" v-if="$gate.isAdmin()">
 
             <div class="col-md-12">
 
@@ -40,7 +40,7 @@
                                     <label for="employee">Employee Name</label>
                                     <select v-model="form.employee" name="employee" class="form-control" :class="{ 'is-invalid': form.errors.has('employee') }" id="employee" required>
                                         <option value="" selected disabled>Please Choose...</option>
-                                        <option value="Juan Dela Cruz">Juan Dela Cruz</option>
+                                        <option v-for="employee in employees" :value="employee.id">{{ employee.name }}</option>
                                     </select>
                                     <has-error :form="form" field="employee"></has-error>
                                 </div>
@@ -224,6 +224,7 @@ import Datepicker from 'vuejs-datepicker';
         data() {
             return {
                 modeofworks: [],
+                employees: [],
                 currentDate: new Date(Date.now()),
                 DatePickerFormat: 'yyyy-MM-dd',
                 disabledDates: {
@@ -300,7 +301,8 @@ import Datepicker from 'vuejs-datepicker';
             } 
         }, 
         created() {
-            axios.get('api/taskadmin').then(response => this.modeofworks = response.data);
+            axios.get('api/taskadmin').then(response => this.modeofworks = response.data.modeofworks);
+            axios.get('api/taskadmin').then(response => this.employees = response.data.employees);
         }
     };
 
