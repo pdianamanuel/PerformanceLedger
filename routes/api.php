@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('taskadmin', 'API\TaskAdminController');
+// Route::apiResource('user', 'API\UserController');
 

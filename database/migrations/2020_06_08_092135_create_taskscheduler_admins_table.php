@@ -13,7 +13,7 @@ class CreateTaskschedulerAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('taskscheduler__admins', function (Blueprint $table) {
+        Schema::create('taskscheduler_admins', function (Blueprint $table) {
             $table->id();
             $table->integer('Employee_Id');
             $table->date('Date');
@@ -30,6 +30,6 @@ class CreateTaskschedulerAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taskscheduler__admins');
+        Schema::dropIfExists('taskscheduler_admins');
     }
 }

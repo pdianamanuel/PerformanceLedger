@@ -19,24 +19,18 @@ class TaskAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    // public function __construct() {
+    //     $this->middleware('auth:api');
+    // }
     public function index()
     {
-        // $modeofwork = new ref_modeofwork;
-        // $modeofwork->ModeOfWork = "Work-from-home";
-        // $modeofwork->save();
-        // return "success";
-        // $activeUser = User::where('isAdmin', 1)->get();
         $modeofworks = ref_modeofwork::all();
-        // $employees = User::join('ref_admin_employees', 'users.id', '=', 'ref_admin_employees.Admin_id')
-        //             ->->select('users.*')
-        // $id = \Auth::user()->id;
-        // dd($id->id);
         $employees = DB::table('users')
                     ->join('ref_admin_employees', 'users.id', '=', 'ref_admin_employees.Employee_id')
                     // ->where('isActive', 1)
                     ->where('Admin_id', 1)
-                    // ->where('isAdmin', 0)
-                    // ->orderBy('name') 
+                    ->orderBy('name') 
                     ->get();
         // 
         // return response()->json([]);
@@ -52,6 +46,25 @@ class TaskAdminController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validatedate = $request->validate([
+            'employee' => 'required',
+            'date1' => 'required|unique:taskscheduler_admins,Date,Employee_Id'. $request->employee,
+            'mow1' => 'required',
+            'task1' => 'required|min:5|max:2000',
+            'date2' => 'required',
+            'mow2' => 'required',
+            'task2' => 'required|min:5|max:2000',
+            'date3' => 'required',
+            'mow3' => 'required',
+            'task3' => 'required|min:5|max:2000',
+            'date4' => 'required',
+            'mow4' => 'required',
+            'task4' => 'required|min:5|max:2000',
+            'date5' => 'required',
+            'mow5' => 'required',
+            'task5' => 'required|min:5|max:2000',
+        ]);
 
         DB::beginTransaction();
 
@@ -78,7 +91,7 @@ class TaskAdminController extends Controller
             // 
             $day1 =  Taskscheduler_admin::create(
             [
-                'Employee_Id' => $request['employeeid'],
+                'Employee_Id' => $request['employee'],
                 'Date' => $request['date1'],
                 'Mow_Id' => $request['mow1'],
                 'Task' => $request['task1']
@@ -86,7 +99,7 @@ class TaskAdminController extends Controller
 
             $day2 =  Taskscheduler_admin::create(
             [
-                'Employee_Id' => $request['employeeid'],
+                'Employee_Id' => $request['employee'],
                 'Date' => $request['date2'],
                 'Mow_Id' => $request['mow2'],
                 'Task' => $request['task2']
@@ -94,7 +107,7 @@ class TaskAdminController extends Controller
 
             $day3 =  Taskscheduler_admin::create(
             [
-                'Employee_Id' => $request['employeeid'],
+                'Employee_Id' => $request['employee'],
                 'Date' => $request['date3'],
                 'Mow_Id' => $request['mow3'],
                 'Task' => $request['task3']
@@ -103,7 +116,7 @@ class TaskAdminController extends Controller
 
             $day4 =  Taskscheduler_admin::create(
             [
-                'Employee_Id' => $request['employeeid'],
+                'Employee_Id' => $request['employee'],
                 'Date' => $request['date4'],
                 'Mow_Id' => $request['mow4'],
                 'Task' => $request['task4']
@@ -111,7 +124,7 @@ class TaskAdminController extends Controller
 
             $day5 =  Taskscheduler_admin::create(
             [
-                'Employee_Id' => $request['employeeid'],
+                'Employee_Id' => $request['employee'],
                 'Date' => $request['date5'],
                 'Mow_Id' => $request['mow5'],
                 'Task' => $request['task5']
