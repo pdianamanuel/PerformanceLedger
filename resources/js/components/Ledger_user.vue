@@ -28,7 +28,7 @@
 
                     <div class="card-header">
                         <i class = "float-sm-left">{{ currentDate | formatDate }}</i>
-                        <i class= "nav-icon fa float-sm-right red">Note:  You must fill in all of the fields.</i>
+                        <!-- <i class= "nav-icon fa float-sm-right red">Note:  You must fill in all of the fields.</i> -->
                     </div>
 
                     <form @submit.prevent="Submit_Timeout">
@@ -38,15 +38,12 @@
                             <div class="form-group row">
 
                                 <div class="col-9">
-                                    <!-- <label for="employee">Name</label>
-                                    <input v-model="form.employee" type="text" name="employee" class="form-control" :class="{ 'is-invalid': form.errors.has('employee') }" id="employee" readonly>
-                                    <has-error :form="form" field="employee"></has-error> -->
-                                    <label for="employee">Name</label>
-                                    <input type="text" name="employee" class="form-control" value="Dianne Manuel" id="employee" readonly></i>
+                                    <label for="employee">NAME</label>
+                                    <input v-for="info in info" :value="info.name" id="employee" class="form-control" readonly>
                                 </div>
                                 <div class="col-3">
                                     <label for="employeeid">ID</label>
-                                    <input type="text" name="employeeid" class="form-control" value="1" id="employeeid" readonly>
+                                    <input v-for="info in info" :value="info.id" id="employeeid" class="form-control" readonly>
                                 </div>
 
                             </div>
@@ -54,16 +51,15 @@
                             <div class="form-group row">
 
                                 <div class="col-3">
-                                    <label for="mow">Mode of Work</label>
-                                    <select v-model="form.mow" name="mow" class="form-control mt-2" :class="{ 'is-invalid': form.errors.has('mow') }" id="mow" required>
-                                        <option value="" selected>Work-from-Home</option>
-                                        <option value="Field">Field</option>
-                                        <option value="Office">Office</option>
+                                    <label for="mow">MODE OF WORK</label>
+                                    <select v-model="form.mow" name="mow" class="form-control mt-2" :class="{ 'is-invalid': form.errors.has('mow') }" id="mow">
+                                        <option v-for="info in info" :value="info.Mow_Id">{{ info.ModeOfWork }}</option>
                                     </select>
-                                    <has-error :form="form" field="mow"></has-error>
+                                    <has-error :form="form" field="mow1"></has-error>
+
                                 </div>
                                 <div class="col-3">
-                                    <a href="#" class="form-control btn btn-info">
+                                    <a @click="timein" class="form-control btn btn-info">
                                       <b>TIME-IN</b>
                                     </a>
                                     <input type="time" name="timeout" max="23:00" class="form-control mt-1" id="timeout" readonly>
@@ -72,7 +68,7 @@
                                     <a href="#" class="form-control btn btn-info" style="pointer-events: none;">
                                       <b>TIME-OUT</b>
                                     </a>
-                                    <input type="time" name="timeout" max="23:00" class="form-control mt-1" id="timeout" readonly>
+                                    <input type="time" name="timeout" class="form-control mt-1" id="timeout" readonly>
                                 </div>
                                 <div class="col-3">
                                     <label for="nohours">NO. OF HOURS</label>
@@ -85,12 +81,12 @@
 
                             <div class="form-group">
                                 <label for="dailytask">DAILY TASK</label>
-                                <textarea rows="5" type="text" name="dailytask" class="form-control" id="dailytask" readonly></textarea>
+                                <textarea rows="7" type="text" name="dailytask" class="form-control" id="dailytask" readonly></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="output">OUTPUT</label>
-                                <textarea rows="5" v-model="form.output" name="output" class="form-control" :class="{ 'is-invalid': form.errors.has('output') }" id="output" minlength="5" maxlength="2000" placeholder="It imposes a limit of 2000 characters." required></textarea>
+                                <textarea rows="7" v-model="form.output" name="output" class="form-control" :class="{ 'is-invalid': form.errors.has('output') }" id="output" minlength="5" maxlength="2000" placeholder="It imposes a limit of 2000 characters." required></textarea>
                                 <has-error :form="form" field="employee"></has-error>
                             </div>
                             
@@ -117,13 +113,19 @@
 
 <script>
 
+import moment from 'moment';
+
     export default {
 
         data() {
             return {
+                modeofworks: [],
+                info: [],
                 currentDate: new Date(Date.now()),
+                // currentTime: this.currentDate.getHours() + ":" + this.currentDate.getMinutes() + ":" + this.currentDate.getSeconds(),
                 form: new Form({
 
+                    employee: '',
                     output : '',
                     mow: ''
 
@@ -132,14 +134,30 @@
         } ,
 
         methods: {
+
+            timein () {
+
+                // this.form.post('api/taskusertimein');
+
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Submission completed at: \n' + moment(String(this.currentDate)).format('hh:mm a'),
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+
+            }, 
+
             Submit_Timeout(){
 
-                this.form.post('api/user');
+                this.form.post('api/taskuser');
 
             }
-        }, 
-        mounted() {
-            console.log('Component mounted.')
+        },  
+        created() {
+            axios.get('api/taskuser').then(response => this.modeofworks = response.data.modeofworks);
+            axios.get('api/taskuser').then(response => this.info = response.data.info);
         }
     };
    

@@ -27,8 +27,9 @@ class TaskAdminController extends Controller
     {
         $modeofworks = ref_modeofwork::all();
         $employees = DB::table('users')
+                    ->select('users.id','users.name')
                     ->join('ref_admin_employees', 'users.id', '=', 'ref_admin_employees.Employee_id')
-                    // ->where('isActive', 1)
+                    ->where('isActive', 1)
                     ->where('Admin_id', 1)
                     ->orderBy('name') 
                     ->get();
@@ -46,22 +47,23 @@ class TaskAdminController extends Controller
      */
     public function store(Request $request)
     {
-
+        // $text = $request->employee;
+        // dd($text);
         $validatedate = $request->validate([
             'employee' => 'required',
-            'date1' => 'required|unique:taskscheduler_admins,Date,Employee_Id'. $request->employee,
+            'date1' => 'required|unique:taskscheduler_admins,Date',
             'mow1' => 'required',
             'task1' => 'required|min:5|max:2000',
-            'date2' => 'required',
+            'date2' => 'required|unique:taskscheduler_admins,Date',
             'mow2' => 'required',
             'task2' => 'required|min:5|max:2000',
-            'date3' => 'required',
+            'date3' => 'required|unique:taskscheduler_admins,Date',
             'mow3' => 'required',
             'task3' => 'required|min:5|max:2000',
-            'date4' => 'required',
+            'date4' => 'required|unique:taskscheduler_admins,Date',
             'mow4' => 'required',
             'task4' => 'required|min:5|max:2000',
-            'date5' => 'required',
+            'date5' => 'required|unique:taskscheduler_admins,Date',
             'mow5' => 'required',
             'task5' => 'required|min:5|max:2000',
         ]);

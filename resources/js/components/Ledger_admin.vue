@@ -48,7 +48,6 @@
                                 <div class="col-3">
                                     <label for="employeeid">ID</label>
                                     <input v-model="form.employee" name="employeeid" class="form-control" :class="{ 'is-invalid': form.errors.has('employeeid') }" readonly>
-
                                     <has-error :form="form" field="employeeid"></has-error>
                                 </div>
                 
@@ -284,11 +283,11 @@ import Datepicker from 'vuejs-datepicker';
 
                     swalalert.fire({
                       title: 'Successfully Saved!',
-                      text: "Do you want to add new task to new employee?",
+                      text: "Do you want to add new task to another employee?",
                       icon: 'success',
                       showCancelButton: true,
-                      confirmButtonText: 'Yes!',
-                      cancelButtonText: 'I want to Logout!',
+                      confirmButtonText: 'Yes',
+                      cancelButtonText: 'I want to Logout',
                       reverseButtons: false
                     }).then((result) => {
                       if (result.value) {

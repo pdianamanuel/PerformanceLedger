@@ -15,9 +15,9 @@ class CreateTaskschedulerAdminsTable extends Migration
     {
         Schema::create('taskscheduler_admins', function (Blueprint $table) {
             $table->id();
-            $table->integer('Employee_Id');
+            $table->foreignid('Employee_Id');
             $table->date('Date');
-            $table->integer('Mow_Id');
+            $table->foreignid('Mow_Id');
             $table->string('Task', 2000);
             $table->timestamps();
         });
